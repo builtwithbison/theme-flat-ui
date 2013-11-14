@@ -1,5 +1,5 @@
 # Flat UI
-Example theme for Bison
+Example theme for Bison using [Flat UI](http://designmodo.github.io/Flat-UI/) and [Twitter Bootstrap](http://getbootstrap.com/).
 
 ## Installation
 
