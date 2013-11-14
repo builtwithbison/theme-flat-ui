@@ -1,0 +1,11 @@
+<h3>Billing &nbsp; <a href="/checkout" class="btn btn-default btn-xs">Edit</a></h3>
+{{ bison:customer_info }}
+<p>
+	{{ first_name }} {{ last_name }}<br />
+	{{ email }}<br />
+	{{ billing_address_1 }}<br />
+	{{ if billing_address2 }}{{ billing_address2 }}<br />{{ endif }}
+	{{ billing_city }}, {{ billing_state }} {{ billing_zip }}<br />
+	{{ bison:country_name code="{billing_country}" }}<br />
+</p>
+{{ /bison:customer_info }}

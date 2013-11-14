@@ -1,0 +1,26 @@
+<div class="navbar navbar-inverse" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="/">{{ _site_name }}</a>
+	</div>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+		{{ nav from="/" }}
+			<li {{ if is_current || is_parent }}class="active"{{ endif }}><a href="{{ url }}">{{ title }}</a></li>
+		{{ /nav }}
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li {{ if segment_1 == "cart" }}class="active"{{ endif }}>
+				<a href="/cart">
+					Cart 
+					{{ if {bison:cart_item_count} > 0 }}&nbsp; &nbsp; <span class="navbar-new">{{ bison:cart_item_count }}</span>{{ endif }}
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

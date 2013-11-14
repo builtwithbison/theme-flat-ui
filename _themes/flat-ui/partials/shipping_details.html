@@ -1,0 +1,10 @@
+<h3>Shipping &nbsp; <a href="/checkout/shipping" class="btn btn-default btn-xs">Edit</a></h3>
+{{ bison:customer_info }}
+<p>
+	{{ shipping_first_name }} {{ shipping_last_name }}<br />
+	{{ shipping_address_1 }}<br />
+	{{ if shipping_address2 }}{{ shipping_address2 }}<br />{{ endif }}
+	{{ shipping_city }}, {{ shipping_state }} {{ shipping_zip }}<br />
+	{{ bison:country_name code="{shipping_country}" }}<br />
+</p>
+{{ /bison:customer_info }}

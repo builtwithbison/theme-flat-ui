@@ -1,0 +1,74 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h1>Checkout <small>Billing Details</small></h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-7">
+
+		{{ theme:partial src="customer_errors" }}
+
+		{{ bison:customer_form 
+			return="/checkout/shipping"  
+			required="first_name|last_name|email|billing_country|billing_address_1|billing_city|billing_state|billing_zip"
+		}}
+			{{ if no_results }}
+				{{ redirect to="products" }}
+			{{ else }}
+				<fieldset>
+					<h3>Billing</h3>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>First Name</label><br />
+							<input type="text" class="form-control" name="first_name" value="{{ first_name }}" />
+						</div>
+						<div class="form-group col-md-6">
+							<label>Last Name</label><br />
+							<input type="text" class="form-control" name="last_name" value="{{ last_name }}" />
+						</div>			
+					</div>
+					<div class="form-group">
+						<label>Email</label><br />
+						<input type="text" class="form-control" name="email" value="{{ email }}" />
+					</div>
+					<div class="form-group">
+						<label>Country</label><br />
+						{{ bison:country_select name="billing_country" selected="{ billing_country }" include_blank="yes" attr="class:select-block" }}
+					</div>
+					<div class="form-group">
+						<label>Address</label><br />
+						<input type="text" class="form-control" name="billing_address_1" value="{{ billing_address_1 }}" />
+					</div>
+					<div class="form-group">
+						<label>Address Line 2</label><br />
+						<input type="text" class="form-control" name="billing_address_2" value="{{ billing_address_2 }}" />
+					</div>
+					<div class="form-group">
+						<label>City</label><br />
+						<input type="text" class="form-control" name="billing_city" value="{{ billing_city }}" />
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label>State</label><br />
+							<input type="text" class="form-control" name="billing_state" value="{{ billing_state }}" />
+						</div>
+						<div class="form-group col-md-4">
+							<label>Zip</label><br />
+							<input type="text" class="form-control" name="billing_zip" value="{{ billing_zip }}" />
+						</div>
+					</div>
+				</fieldset>
+				<br>
+				<p>
+					<button type="submit" class="btn btn-primary btn-lg">Save and proceed to shipping &nbsp; <span class="fui-arrow-right"></button>
+				</p>
+			{{ endif }}
+		{{ /bison:customer_form }}
+	</div>
+	<div class="col-md-4 col-md-push-1">
+		{{ theme:partial src="cart_summary" }}
+	</div>
+</div>

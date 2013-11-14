@@ -1,0 +1,71 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h1>Checkout <small>Shipping Details</small></h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-7">
+
+		{{ theme:partial src="customer_errors" }}
+
+		{{ bison:customer_form 
+			return="/checkout/payment"  
+			required="shipping_first_name|shipping_last_name|shipping_country|shipping_address_1|shipping_city|shipping_state|shipping_zip"
+		}}
+			{{ if no_results }}
+				{{ redirect to="products" }}
+			{{ else }}
+				<fieldset>
+					<h3>Shipping</h3>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>First Name</label><br />
+							<input type="text" class="form-control" name="shipping_first_name" value="{{ shipping_first_name }}" />
+						</div>
+						<div class="form-group col-md-6">
+							<label>Last Name</label><br />
+							<input type="text" class="form-control" name="shipping_last_name" value="{{ shipping_last_name }}" />
+						</div>			
+					</div>
+					<div class="form-group">
+						<label>Country</label><br />
+						{{ bison:country_select name="shipping_country" selected="{ billing_country }" include_blank="yes" attr="class:select-block" }}
+					</div>	
+					<div class="form-group">
+						<label>Address</label><br />
+						<input type="text" class="form-control" name="shipping_address_1" value="{{ shipping_address_1 }}" />
+					</div>
+					<div class="form-group">
+						<label>Address Line 2</label><br />
+						<input type="text" class="form-control" name="shipping_address_2" value="{{ shipping_address_2 }}" />
+					</div>
+					<div class="form-group">
+						<label>City</label><br />
+						<input type="text" class="form-control" name="shipping_city" value="{{ shipping_city }}" />
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label>State</label><br />
+							<input type="text" class="form-control" name="shipping_state" value="{{ shipping_state }}" />
+						</div>
+						<div class="form-group col-md-4">
+							<label>Zip</label><br />
+							<input type="text" class="form-control" name="shipping_zip" value="{{ shipping_zip }}" />
+						</div>
+					</div>			
+				</fieldset>
+				<br>
+				<p>
+					<button type="submit" class="btn btn-primary btn-lg">Save and proceed to payment &nbsp; <span class="fui-arrow-right"></button>
+				</p>
+			{{ endif }}
+		{{ /bison:customer_form }}
+	</div>
+	<div class="col-md-4 col-md-push-1">
+		{{ theme:partial src="billing_details" }}
+		{{ theme:partial src="cart_summary" }}
+	</div>
+</div>

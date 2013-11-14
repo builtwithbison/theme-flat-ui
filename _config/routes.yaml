@@ -1,0 +1,8 @@
+routes:
+  /cart: cart
+  /checkout: checkout_billing
+  /checkout/shipping: checkout_shipping
+  /checkout/payment: checkout_payment
+  /order-details: order_details
+  /cart/add: utils/add_to_cart
+  /cart/empty: utils/empty_cart

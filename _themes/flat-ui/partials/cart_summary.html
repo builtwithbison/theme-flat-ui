@@ -1,0 +1,55 @@
+
+{{ bison:cart_items }}
+	{{ unless no_results }}
+		{{ if first }}
+			<h3>Cart <small>{{ bison:cart_item_count }} items &nbsp; <a href="/cart" class="btn btn-default btn-xs">Edit</a></small></h3>
+			<table class="table table-striped table-condensed cart-summary">
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th class="text-right">Price</th>
+					</tr>
+				</thead>
+				<tbody>
+		{{ endif }}
+					<tr>
+						<td>
+							<a href="{{ url }}">
+								<img src="{{ transform src='{entry.product_photo}' width='40' }}" alt="{{ title }}" class="pull-left" />
+								<h4>{{ title }}</h4>
+							</a>
+							{{ if item_option }}
+								<small>
+									{{ item_option }}
+									{{ if item_option_modifier }}
+										<small class="text-muted">(+${{ item_option_modifier }})</small>
+									{{ endif }}
+								</small>
+							{{ endif }}
+						</td>
+						<td class="text-right">${{ price }}</td>
+					</tr>
+		{{ if last }}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Subtotal</th>
+						<td class="text-right">${{ bison:cart_subtotal }}</td>
+					</tr>
+					<tr>
+						<th>Shipping</th>
+						<td class="text-right">${{ bison:cart_shipping }}</td>
+					</tr>
+					<tr>
+						<th>Tax</th>
+						<td class="text-right">${{ bison:cart_tax }}</td>
+					</tr>
+					<tr>
+						<th>Total</th>
+						<td class="text-right">${{ bison:cart_total }}</td>
+					</tr>
+				</tfoot>
+			</table>
+		{{ endif }}
+	{{ endif }}
+{{ /bison:cart_items }}

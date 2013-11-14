@@ -1,0 +1,86 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h1>Cart <small>{{ bison:cart_item_count }} items</small></h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		{{ bison:update_cart_form }}
+			{{ if no_results }}
+				<p class="lead">Your cart is empty.</p>
+				<p><a href="/products" class="btn btn-primary btn-lrg">View products &nbsp; <span class="fui-arrow-right"></span></a></p>
+			{{ else }}
+				{{ if first }}
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Qty</th>
+								<th class="text-right">Price</th>
+								<th class="text-right">Line Total</th>
+							</tr>
+						</thead>
+						<tbody>
+				{{ endif }}
+							<tr>
+								<td>
+									{{ title }}
+									{{ if item_option }}
+										<br />
+										<small>
+											{{ item_option }}
+											{{ if item_option_modifier }}
+												<small class="text-muted">(+${{ item_option_modifier }})</small>
+											{{ endif }}
+										</small>
+									{{ endif }}
+								</td>
+								<td class="col-xs-2">
+									<input type="number" name="quantity[{{ zero_index }}]" value="{{ quantity }}" class="form-control col-x" />
+									<label class="checkbox"><input type="checkbox" name="remove[{{ zero_index }}]" value="yes" data-toggle="checkbox" /> Remove</label>
+								</td>
+								<td class="text-right">${{ price }}</td>
+								<td class="text-right">${{ subtotal }}</td>
+							</tr>
+				{{ if last }}
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="3" class="text-right">Subtotal</th>
+								<td colspan="2" class="text-right">${{ bison:cart_subtotal }}</td>
+							</tr>
+							<tr>
+								<th colspan="3" class="text-right">Shipping</th>
+								<td colspan="2" class="text-right">${{ bison:cart_shipping }}</td>
+							</tr>
+							<tr>
+								<th colspan="3" class="text-right">Tax <span class="text-muted">({{ bison:tax_rate }}%)</small></th>
+								<td colspan="2" class="text-right">${{ bison:cart_tax }}</td>
+							</tr>
+							<tr>
+								<th colspan="3" class="text-right">Total</th>
+								<td colspan="2" class="text-right">${{ bison:cart_total }}</td>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								<button type="submit" class="btn btn-lg btn-primary">
+									Update cart &nbsp; <span class="fui-check"></span>
+								</button>
+								<a href="/cart/empty" class="btn btn-lg btn-default">Empty Cart &nbsp; <span class="fui-cross"></span></a>
+							</p>
+						</div>
+						<div class="col-md-6 text-right">
+							<p><a href="/checkout" class="btn btn-lg btn-primary">Proceed to checkout &nbsp; <span class="fui-arrow-right"></span></a></p>
+						</div>
+					</div>
+				{{ endif }}
+			{{ endif }}
+		{{ /bison:update_cart_form }}
+	</div>
+</div>

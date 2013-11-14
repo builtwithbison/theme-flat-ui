@@ -1,0 +1,94 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h1>Order Details</h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		{{ bison:order_details }}
+			{{ if no_results }}
+				<p class="lead">You have not placed an order.</p>
+				<p><a href="/products" class="btn btn-primary btn-lrg">View products &nbsp; <span class="fui-arrow-right"></span></a></p>
+			{{ else }}
+				<div class="row">
+					<div class="col-md-6">
+						<h3>Billing</h3>
+						<p>
+							{{ first_name }} {{ last_name }}<br />
+							{{ email }}<br />
+							{{ billing_address_1 }}<br />
+							{{ if billing_address2 }}{{ billing_address2 }}<br />{{ endif }}
+							{{ billing_city }}, {{ billing_state }} {{ billing_zip }}<br />
+							{{ billing_country }}<br />
+							Transaction ID: {{ transaction_id }}
+						</p>
+					</div>
+					<div class="col-md-6">
+						<h3>Shipping</h3>
+						<p>
+							{{ shipping_first_name }} {{ shipping_last_name }}<br />
+							{{ shipping_address_1 }}<br />
+							{{ if shipping_address2 }}{{ shipping_address2 }}<br />{{ endif }}
+							{{ shipping_city }}, {{ shipping_state }} {{ shipping_zip }}<br />
+							{{ shipping_country }}
+						</p>
+					</div>
+				</div>
+
+				<h3>Items</h3>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Product</th>
+							<th>Qty</th>
+							<th class="text-right">Price</th>
+							<th class="text-right">Line Total</th>
+						</tr>
+					</thead>
+					<tbody>
+					{{ items }}
+						<tr>
+							<td>
+								{{ title }}
+								{{ if item_option }}
+									<br />
+									<small>
+										{{ item_option }}
+										{{ if item_option_modifier }}
+											<small class="text-muted">(+${{ item_option_modifier }})</small>
+										{{ endif }}
+									</small>
+								{{ endif }}
+							</td>
+							<td class="col-xs-2">{{ quantity }}</td>
+							<td class="text-right">${{ price }}</td>
+							<td class="text-right">${{ subtotal }}</td>
+						</tr>
+					{{ /items }}
+					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="3" class="text-right">Subtotal</th>
+							<td colspan="2" class="text-right">${{ subtotal }}</td>
+						</tr>
+						<tr>
+							<th colspan="3" class="text-right">Shipping</th>
+							<td colspan="2" class="text-right">${{ shipping }}</td>
+						</tr>
+						<tr>
+							<th colspan="3" class="text-right">Tax</th>
+							<td colspan="2" class="text-right">${{ tax }}</td>
+						</tr>
+						<tr>
+							<th colspan="3" class="text-right">Total</th>
+							<td colspan="2" class="text-right">${{ total }}</td>
+						</tr>
+					</tfoot>
+				</table>
+			{{ endif }}
+		{{ /bison:order_details }}
+	</div>
+</div>

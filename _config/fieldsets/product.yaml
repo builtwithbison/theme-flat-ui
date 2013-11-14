@@ -1,0 +1,32 @@
+title: Product
+hide: true
+
+fields:
+  price:
+    display: Price
+    type: bison
+    subtype: price
+  options:
+    type: grid
+    display: Options
+    min_rows: 0
+    fields:
+      label:
+        type: text
+        display: Color
+      modifier:
+        type: bison
+        subtype: price
+        display: Price
+  categories:
+    display: Categories
+    type: suggest
+    create: true
+    hide_selected: true
+    folder: products
+    type: categories
+  product_photo:
+    display: Photo
+    type: file
+    allowed: [png, gif, jpg, jpeg]
+    destination: assets/img

@@ -1,0 +1,28 @@
+title: Homepage
+hide: true
+
+fields:
+  section_banner:
+    display: Banner
+    type: section
+  banner_title:
+    display: Banner Title
+    type: text
+  banner_text:
+    display: Banner Text
+    type: textarea
+  banner_button:
+    display: Button
+    type: grid
+    max_rows: 1
+    fields:
+      text:
+        display: Text
+        type: text
+      link:
+        display: Link
+        type: text
+
+  section_content:
+    display: Content
+    type: section

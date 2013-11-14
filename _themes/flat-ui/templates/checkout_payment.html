@@ -1,0 +1,75 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h1>Checkout <small>Payment Details</small></h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-7">
+
+		{{ bison:checkout_form_errors }}
+			<div class="alert alert-danger">
+				{{ if missing }}
+					<p>You are missing the following fields:</p>
+					<ul>
+					{{ missing }}
+						<li>{{ field_label }}</b></li>
+					{{ /missing }}
+					</ul>
+				{{ endif }}
+				{{ if gateway }}
+					<p>Your payment couldn't be processed:</p>
+					<ul>
+					{{ gateway }}
+						<li>{{ message }}</li>
+					{{ /gateway }}
+					</ul>
+				{{ endif }}
+			</div>
+		{{ /bison:checkout_form_errors }}
+
+		{{ bison:checkout_form
+			return="/order-details"
+			required="number|cvc|expiry_month|expiry_year"
+		}}
+			{{ if no_results }}
+				{{ redirect to="products" }}
+			{{ else }}
+				<fieldset>
+					<h3>Payment</h3>
+					<div class="form-group">
+						<label>Number</label><br />
+						<input type="text" class="form-control" name="number" />
+					</div>
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label>Security Code</label><br />
+							<input type="text" class="form-control" name="cvc" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label>Expiry Month</label><br />
+							<input type="text" class="form-control" name="expiry_month" placeholder="MM" />
+						</div>
+						<div class="form-group col-md-3">
+							<label>Expiry Year</label><br />
+							<input type="text" class="form-control" name="expiry_year" placeholder="YYYY" />
+						</div>
+					</div>
+				</fieldset>
+				<br>
+				<p>
+					<button type="submit" class="btn btn-primary btn-lg">Place Order &nbsp; <span class="fui-check-inverted"></button>
+				</p>
+			{{ endif }}
+		{{ /bison:checkout_form }}
+	</div>
+	<div class="col-md-4 col-md-push-1">
+		{{ theme:partial src="billing_details" }}
+		{{ theme:partial src="shipping_details" }}
+		{{ theme:partial src="cart_summary" }}
+	</div>
+</div>
