@@ -9,3 +9,4 @@ Example theme for Bison using [Flat UI](http://designmodo.github.io/Flat-UI/) an
 4. Copy the contents of the `_content` folder to your `/_content` directory.
 5. Copy `_config/routes.yaml` to your `/_config` directory.
 6. Copy `assets/` to your root directory.
+7. [Install Bison](https://builtwithbison.com/docs/getting-started/installing-and-updating)
